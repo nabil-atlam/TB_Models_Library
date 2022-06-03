@@ -1,3 +1,3 @@
 # TB_Models_Library
 
-The goal is to develop code to explore topological phenomena in condensed matter tight-binding models 
+The goal is to explore topological phenomena related to condensed matter tight-binding models 
