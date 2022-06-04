@@ -45,6 +45,7 @@ def _model_from_mat(
         dim = 3) -> ty.Sequence[ty.Dict]:
     """
     Get two Python dictionaries: hop and overlap from matlab data file
+    For Slater-Koster Models 
     """
     hop = dict()
     overlap = dict()
