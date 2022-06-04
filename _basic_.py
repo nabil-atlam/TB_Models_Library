@@ -37,7 +37,7 @@ def _get_rec_vec_(
 # -------------------------------------------------------------------------------------#
 # ------- GET TIGHT-BINDING HOPPING AND OVERLAP PARAMETERS FROM MAT DATA FILE -------- #
 # -------------------------------------------------------------------------------------#
-def _hash_from_mat(
+def _model_from_mat(
         mat_filename: str,
         hop_table_name: str,
         overlap_table_name: str,
@@ -400,7 +400,7 @@ overlap_tbl_name = "ftn60_s"
 uc = [[3.1790,0,0],[-1.5895,2.7531,0],[0,0,12.7290]]
 
 # Run 
-hop, overlap = _hash_from_mat(mat_file_name, hop_tbl_name, overlap_tbl_name)
+hop, overlap = _model_from_mat(mat_file_name, hop_tbl_name, overlap_tbl_name)
 
 plot_bs(hsps = hsps, hop = hop, overlap = overlap, uc = uc, energy_ran = (-3, 2))
 
