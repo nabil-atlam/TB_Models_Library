@@ -19,6 +19,7 @@ class model():
 
     # INITIALIZATION 
     def _init_(
+            system_name: str = None, 
             hop: dict = None,
             uc: npt.NDArray[float] = None, 
             pos: ty.Sequence[ty.Sequence[float]] = None,
