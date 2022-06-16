@@ -4,7 +4,7 @@ import typing as ty
 import numpy.typing as npt
 import itertools as iter
 import matplotlib.pyplot as plt 
-
+from sympy import * 
 
 
 #########################################################
@@ -15,6 +15,7 @@ def bz(
         save: str = None,
         show: bool = True,
         two_dim: bool = True,
+        print_vertices: bool = True, # show vertices of the 1st BZ 
         supercell_size = 3
         ):
     """
@@ -37,9 +38,17 @@ def bz(
     # generate Voronoi tessellation and extract vertices surrounding Gamma point 
     vertices = _vertices_central_voronoi(gvecs)
     #print(vertices)
+    # show vertices
+    if print_vertices is True:
+        symb_vertices = Matrix(vertices)
+        f = lambda x: nsimplify(x)
+        symb_vertices = symb_vertices.applyfunc(f)
+        pprint(symb_vertices)
+
+    # plot 
     if show is True or save is not None:
         if two_dim is True:
-            plot_hull_2d(vertices)
+            plot_hull_2d(vertices, save = save, show = show)
 
 
     # generate convex hull from the vertices
