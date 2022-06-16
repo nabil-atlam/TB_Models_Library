@@ -13,7 +13,8 @@ import matplotlib.pyplot as plt
 def bz(
         uc: ty.Sequence[ty.Sequence[float]],
         save: str = None,
-        show: bool = False,
+        show: bool = True,
+        two_dim: bool = True,
         supercell_size = 3
         ):
     """
@@ -35,8 +36,11 @@ def bz(
 
     # generate Voronoi tessellation and extract vertices surrounding Gamma point 
     vertices = _vertices_central_voronoi(gvecs)
-    print(vertices)
-    plot_hull(vertices)
+    #print(vertices)
+    if show is True or save is not None:
+        if two_dim is True:
+            plot_hull_2d(vertices)
+
 
     # generate convex hull from the vertices
     from scipy.spatial import ConvexHull, convex_hull_plot_2d
@@ -133,12 +137,14 @@ def plot_polygon(
     plt.show()
 
 # simple function to plot convex hull     
-def plot_hull(
+def plot_hull_2d(
         pts_coords,
         show: bool = True,
         save: str = None,
         ):
-
+    """
+    Plots the convex hull given a set of vertices
+    """
     pts_coords = np.append(pts_coords, [pts_coords[0]], axis = 0)
     
     fig, ax = plt.subplots()
@@ -150,7 +156,21 @@ def plot_hull(
 
     # plot the 1-simplices joining the vertices
     # assume the system is two-dimensional
-    ax.plot(xs, ys)
+    ax.plot(xs, ys, c = '#000080')
+
+    # add Gamma Point
+    gamma = [0.0, 0.0]
+    ax.scatter(gamma[0], gamma[0], c = '#191970')
+    ax.annotate(text = r'$\Gamma$',
+                xy = gamma,
+                fontsize = 'x-large',
+                c = '#B22222',
+                )
+
+    # add axes
+    ax.axvline(x = 0.0, linestyle = '--', c = '#DC143C')
+    ax.axhline(y = 0.0, linestyle = '--', c = '#DC143C')
+    
     
     if show is True:
         plt.show()
