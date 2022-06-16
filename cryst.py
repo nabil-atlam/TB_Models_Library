@@ -36,7 +36,7 @@ def bz(
     # generate Voronoi tessellation and extract vertices surrounding Gamma point 
     vertices = _vertices_central_voronoi(gvecs)
     print(vertices)
-    plot_polygon(vertices)
+    plot_hull(vertices)
 
     # generate convex hull from the vertices
     from scipy.spatial import ConvexHull, convex_hull_plot_2d
@@ -131,5 +131,30 @@ def plot_polygon(
     ax.set_xlim([-0.4, 0.5])
     ax.set_ylim([-0.4,0.4])
     plt.show()
+
+# simple function to plot convex hull     
+def plot_hull(
+        pts_coords,
+        show: bool = True,
+        save: str = None,
+        ):
+
+    pts_coords = np.append(pts_coords, [pts_coords[0]], axis = 0)
+    
+    fig, ax = plt.subplots()
+    ax.axis('off')
+    
+    # plot the vertices 
+    xs, ys = pts_coords[: , 0], pts_coords[: , 1]
+    ax.scatter(xs, ys, c = '#4B0082')
+
+    # plot the 1-simplices joining the vertices
+    # assume the system is two-dimensional
+    ax.plot(xs, ys)
+    
+    if show is True:
+        plt.show()
+    if save is not None:
+        plt.savefig(str)
     
     
