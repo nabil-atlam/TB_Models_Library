@@ -6,6 +6,9 @@ from sympy.vector import *
 # ----------------------------------------------------------------------------#
 # ---------------------- DEFINING MODEL ------------------------------------- #
 # --------------------------------------------------------------------------- #
+
+# TIGHT-BINDING MODEL FOR GRAPHENE 
+
 # orthonormal system
 N = CoordSys3D('N')
 
@@ -29,5 +32,5 @@ eigvals = H.eigenvals()
 
 print("Eigenvalues")
 
-pprint(eigvals)
+pprint(simplify(eigvals))
 
